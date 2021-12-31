@@ -1,1 +1,1 @@
-# swiftty-xmp
+# swifty-xmp
