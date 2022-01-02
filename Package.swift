@@ -5,11 +5,13 @@ import PackageDescription
 
 let package = Package(
     name: "SwiftyXMP",
+    platforms: [
+        .macOS(.v10_15),
+    ],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
-        .library(
-            name: "SwiftyXMP",
-            targets: ["SwiftyXMP"]),
+        .library(name: "SwiftyXMP", targets: ["SwiftyXMP"]),
+        .library(name: "Clibxmp", targets: ["Clibxmp"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -20,12 +22,9 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "SwiftyXMP",
-            dependencies: ["clibxmp"]),
-        .testTarget(
-            name: "SwiftyXMPTests",
-            dependencies: ["SwiftyXMP"]),
+            dependencies: ["Clibxmp"]),
         .systemLibrary(
-            name: "clibxmp",
+            name: "Clibxmp",
             pkgConfig: "libxmp",
             providers: [
               .brew(["libxmp"]),

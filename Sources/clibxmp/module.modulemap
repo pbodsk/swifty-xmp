@@ -1,4 +1,0 @@
-module xmp {
-  umbrella header "include/xmp.h"
-  link "xmp"
-}

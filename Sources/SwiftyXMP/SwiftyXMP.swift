@@ -1,5 +1,5 @@
 import Foundation
-import xmp
+import Clibxmp
 
 public struct SwiftyXMP {
   private var context: XMPContext

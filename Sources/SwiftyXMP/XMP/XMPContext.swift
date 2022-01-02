@@ -1,5 +1,5 @@
 import Foundation
-import xmp
+import Clibxmp
 
 public struct XMPContext {
   public var xmp_context: xmp_context
