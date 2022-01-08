@@ -112,6 +112,14 @@ class ModPlayer {
     }
   }
 
+  func getInfo() {
+    let info = ModPlayer.swiftyXMP.moduleInfo()
+    let durationMin = (info.sequenceData.duration + 500) / 60000
+    let durationSec = ((info.sequenceData.duration + 500) / 1000) % 60
+    print(durationMin)
+    print(durationSec)
+  }
+
   func play() {
     guard playerState != nil && playerState!.audioQueue != nil else { return }
     for i in 0..<kBufferCount {
@@ -222,5 +230,6 @@ class ModPlayer {
 let modplayer = ModPlayer()
 
 modplayer.load()
+modplayer.getInfo()
 modplayer.initPlayer()
 modplayer.play()

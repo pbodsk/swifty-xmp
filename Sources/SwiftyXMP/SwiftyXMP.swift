@@ -4,6 +4,7 @@ import Clibxmp
 public struct SwiftyXMP {
   private var context: XMPContext
   private var frameInfo: xmp_frame_info = xmp_frame_info()
+  private var _moduleInfo: xmp_module_info = xmp_module_info()
 
   public init() {
     self.context = XMPContext.initFromXMPContext(xmp_create_context())
@@ -37,5 +38,10 @@ public struct SwiftyXMP {
 
   public func stop() {
     xmp_stop_module(context.xmp_context)
+  }
+
+  public mutating func moduleInfo() -> XMPModuleInfo {
+    xmp_get_module_info(context.xmp_context, &_moduleInfo)
+    return XMPModuleInfo(_moduleInfo)
   }
 }
