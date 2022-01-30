@@ -116,8 +116,6 @@ class ModPlayer {
     let info = ModPlayer.swiftyXMP.moduleInfo()
     let durationMin = (info.sequenceData.duration + 500) / 60000
     let durationSec = ((info.sequenceData.duration + 500) / 1000) % 60
-    print(durationMin)
-    print(durationSec)
   }
 
   func play() {
@@ -134,6 +132,30 @@ class ModPlayer {
     if status == 0 {
       playerState?.isRunning = true
     }
+  }
+
+  func mute() {
+    do {
+      //try print(ModPlayer.swiftyXMP.updateChannel(0, to: .mute))
+      try print(ModPlayer.swiftyXMP.updateChannel(1, to: .muted))
+      try print(ModPlayer.swiftyXMP.updateChannel(1, to: .query))
+      //try print(ModPlayer.swiftyXMP.updateChannel(2, to: .mute))
+      //try print(ModPlayer.swiftyXMP.updateChannel(3, to: .mute))
+    } catch {
+      print(error)
+    }
+  }
+
+  func skip() {
+    do {
+      try print(ModPlayer.swiftyXMP.seek(to: 5000))
+    } catch {
+      print(error)
+    }
+  }
+
+  var supportedFormats: [String] {
+    ModPlayer.swiftyXMP.supportedModuleFormats
   }
 
   private func audioQueueInit(playerState: inout PlayerState) -> OSStatus {
@@ -233,3 +255,8 @@ modplayer.load()
 modplayer.getInfo()
 modplayer.initPlayer()
 modplayer.play()
+modplayer.skip()
+
+while true {
+
+}
