@@ -68,12 +68,12 @@ public struct SwiftyXMP {
   }
 
   // MARK: - Channel controls
-  public func updateChannel(_ channel: Int32, to newState: XMPChannelState) throws -> Int32 {
+  public func updateChannel(_ channel: Int32, to newState: XMPChannelState) throws -> XMPChannelState? {
     let previousChannelState = xmp_channel_mute(context.xmp_context, channel, newState.rawValue)
     guard previousChannelState != XMP_ERROR_STATE else {
       throw XMPErrors.invalidState
     }
-    return previousChannelState
+    return XMPChannelState(rawValue: previousChannelState)
   }
 
   // MARK: - Module information
