@@ -27,6 +27,10 @@ public struct SwiftyXMP {
     }
   }
 
+  public func releaseCurrentModule() {
+    xmp_release_module(context.xmp_context)
+  }
+
   // MARK: - Play controls
   public func start() {
     xmp_start_player(context.xmp_context, 44100, 0)

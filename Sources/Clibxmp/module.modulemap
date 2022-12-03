@@ -1,5 +1,5 @@
 module Clibxmp [system] {
-  header "/usr/local/include/xmp.h"
+  header "/opt/homebrew/include/xmp.h"
   link "libxmp"
   export *
 }

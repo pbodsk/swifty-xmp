@@ -103,7 +103,7 @@ class ModPlayer {
   }
 
   func load() {
-    let url = URL(fileURLWithPath: "/Users/peter/Desktop/enigma.mod")
+    let url = URL(fileURLWithPath: "/Users/pebo/Music/Mods/enigma.mod")
 
     do {
       try ModPlayer.swiftyXMP.load(url)
@@ -146,12 +146,39 @@ class ModPlayer {
     }
   }
 
+  func pause() {
+    AudioQueuePause(playerState!.audioQueue!)
+  }
+
+  func resume() {
+    let status = AudioQueueStart(playerState!.audioQueue!, nil)
+    if status == 0 {
+      playerState?.isRunning = true
+    }
+  }
+
   func skip() {
     do {
       try print(ModPlayer.swiftyXMP.seek(to: 5000))
     } catch {
       print(error)
     }
+  }
+
+
+  func testRun() {
+    load()
+    getInfo()
+    initPlayer()
+    play()
+    pause()
+    var i = 0
+    print("go")
+    while i < 1000000000 {
+      i = i + 1
+    }
+    print("done")
+    resume()
   }
 
   var supportedFormats: [String] {
@@ -251,11 +278,10 @@ class ModPlayer {
 
 let modplayer = ModPlayer()
 
-modplayer.load()
-modplayer.getInfo()
-modplayer.initPlayer()
-modplayer.play()
-modplayer.skip()
+modplayer.testRun()
+
+//sleep(1000)
+//modplayer.resume()
 
 while true {
 
