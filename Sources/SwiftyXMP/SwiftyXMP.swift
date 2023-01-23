@@ -34,6 +34,7 @@ public struct SwiftyXMP {
   // MARK: - Play controls
   public func start() {
     xmp_start_player(context.xmp_context, 44100, 0)
+    xmp_set_player(context.xmp_context, XMP_PLAYER_MIX, 0)
   }
 
   public mutating func playFrame() throws -> XMPFrameInfo {
